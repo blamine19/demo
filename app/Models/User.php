@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Shop\Product;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -48,5 +49,10 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
     public function getTenants(Panel $panel): Collection
     {
         return Team::all();
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }
